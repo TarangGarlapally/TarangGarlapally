@@ -41,8 +41,7 @@ media platform for writers.
 * Can _**continue listening audio content even on navigating throughout the app**_
 * _**Users get notified**_ of events like likes, comments, and collab invites
 * _And many features to come_
-* [Checki it out here!](https://scribblebow.web.app/)
-* <a href="https://scribblebow.web.app/" target="_blank">Check it out here!</a>
+* [Check it out here!](https://scribblebow.web.app/)
 
 <br />
 
