@@ -4,7 +4,7 @@
 </div>
 
 
-#### I'm an undergraduate student studying **Computer Science and Engineering** 💻
+#### 📖 I'm an undergraduate student studying **Computer Science and Engineering** 💻
  
  - 👨‍💻 I can work with the languages:
       * Pyhton 
@@ -19,47 +19,48 @@
  
 <br />
 
-**Open to Collaborate and looking for internships**
+### My GitHub Stats!
+![Tarang's GitHub stats](https://github-readme-stats.vercel.app/api?username=TarangGarlapally)
 
+<!--
  ### Have a look at _**some**_ of my **peojects** here!
- 
+--
  <div>
 <img align = "right" alt="Tarang's Bitmoji" src="/ScribbleBow.png" width="250px" height="250px"></img> 
 </div>
- 
-
+--
  #### **ScribbleBow**
- 
+--
  > ReactJS, Firebase, NodeJS, WebMedia API 
- 
+--
 A web application that allows content creators to read,
 collaborate, write and share their works with the world. A social
 media platform for writers.
- 
+--
 * Users will be able to publish 7 types of content including _**Audio**_ besides  written content
 * Users will be able to _**collaborate**_ with each other
 * Can _**continue listening audio content even on navigating throughout the app**_
 * _**Users get notified**_ of events like likes, comments, and collab invites
 * _And many features to come_
 * [Check it out here!](https://scribblebow.web.app/)
-
+--
 <br />
-
+--
 #### **Password Generator API**
-
+--
 > NodeJS, ExpressJS
-
+--
 Generates a strong password by selecting 1 out of many
 implemented algorithms at random taking a name and a date.
 * Use it for your apps: https://passwordgenerator-api.herokuapp.com/
-
-
+-->
+<!--
 Would you like to contribute more _**password generating algorithms**_ to randomize it even more?
-
+--
 _Just a fork and a PR away!_
-
+--
 * Repo: https://github.com/TarangGarlapally/PasswordGeneratorAPI
-
+-->
 <!--
 **TarangGarlapally/TarangGarlapally** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
