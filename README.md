@@ -1,5 +1,14 @@
 ### Hi there 👋
-
+#### I'm an undergraduate student studying **Computer Science and Engineering** 💻
+ 
+ - 👨‍💻 I can work with the languages:
+      * Pyhton 
+      * Java
+      * C
+      * C++
+      * JavaScript
+ - I'm skilled at 🕸️ Web development with **ReactJS** framwork 
+ 
 <!--
 **TarangGarlapally/TarangGarlapally** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
