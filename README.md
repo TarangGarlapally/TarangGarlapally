@@ -20,7 +20,7 @@
 <br />
 
 ### My GitHub Stats!
-![Tarang's GitHub stats](https://github-readme-stats.vercel.app/api?username=TarangGarlapally)
+![Tarang's GitHub stats](https://github-readme-stats.vercel.app/api?username=TarangGarlapally&hide=stars&count_private=true)
 
 <!--
  ### Have a look at _**some**_ of my **peojects** here!
