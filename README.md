@@ -1,5 +1,5 @@
 ### Hi there 👋
-![Tarang's Bitmoji](/my_bitmoji_transp.png)
+![Tarang's Bitmoji](/my_bitmoji_transparent.png)
 #### I'm an undergraduate student studying **Computer Science and Engineering** 💻
  
  - 👨‍💻 I can work with the languages:
