@@ -19,6 +19,7 @@
  
 <br />
 
+**Open to Collaborate and looking for internships**
 
  ### Have a look at _**some**_ of my **peojects** here!
  
@@ -26,7 +27,9 @@
 <img align = "right" alt="Tarang's Bitmoji" src="/ScribbleBow.png" width="250px" height="250px"></img> 
 </div>
  
+
  #### **ScribbleBow**
+ 
  > ReactJS, Firebase, NodeJS, WebMedia API 
  
 A web application that allows content creators to read,
@@ -38,6 +41,25 @@ media platform for writers.
 * Can _**continue listening audio content even on navigating throughout the app**_
 * _**Users get notified**_ of events like likes, comments, and collab invites
 * _And many features to come_
+* [Checki it out here!](https://scribblebow.web.app/)
+
+<br />
+
+#### **Password Generator API**
+
+> NodeJS, ExpressJS
+
+Generates a strong password by selecting 1 out of many
+implemented algorithms at random taking a name and a date.
+* Use it for your apps: https://passwordgenerator-api.herokuapp.com/
+
+
+Would you like to contribute more _**password generating algorithms**_ to randomize it even more?
+
+_Just a fork and a PR away!_
+
+* Repo: https://github.com/TarangGarlapally/PasswordGeneratorAPI
+
 <!--
 **TarangGarlapally/TarangGarlapally** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
