@@ -29,6 +29,16 @@
 
 [![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=TarangGarlapally&repo=scribblebow&theme=dark)](https://github.com/TarangGarlapally/scribblebow)
 
+A web application that allows content creators to read,
+collaborate, write and share their works with the world. A social
+media platform for writers.
+
+* Users will be able to publish 7 types of content including _**Audio**_ besides  written content
+* Users will be able to _**collaborate**_ with each other
+* Can _**continue listening audio content even on navigating throughout the app**_
+* _**Users get notified**_ of events like likes, comments, and collab invites
+* _And many features to come_
+* [Check it out here!](https://scribblebow.web.app/)
 
 
 #### **Password Generator API**
