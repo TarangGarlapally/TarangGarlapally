@@ -1,5 +1,9 @@
 ### Hi there 👋
-<img alt="Tarang's Bitmoji" src="/my_bitmoji.png" width="250px" height="250px"></img>
+<div>
+<img align = "right" alt="Tarang's Bitmoji" src="/my_bitmoji.png" width="250px" height="250px"></img> 
+</div>
+
+
 #### I'm an undergraduate student studying **Computer Science and Engineering** 💻
  
  - 👨‍💻 I can work with the languages:
@@ -9,7 +13,7 @@
       * C++
       * JavaScript
  - I'm skilled at 🕸️ Web development with **ReactJS** framwork 
- 
+
 <!--
 **TarangGarlapally/TarangGarlapally** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
