@@ -42,6 +42,7 @@ media platform for writers.
 * _**Users get notified**_ of events like likes, comments, and collab invites
 * _And many features to come_
 * [Checki it out here!](https://scribblebow.web.app/)
+* <a href="https://scribblebow.web.app/" target="_blank">Check it out here!</a>
 
 <br />
 
