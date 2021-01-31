@@ -19,7 +19,7 @@
  
 <br />
 
-### My GitHub Stats!
+### 📈 My GitHub Stats!
 ![Tarang's GitHub stats](https://github-readme-stats.vercel.app/api?username=TarangGarlapally&hide=stars&count_private=true&show_icons=true&theme=dark)
 
 Find me on
