@@ -30,6 +30,7 @@ Find me on
 <a href="https://twitter.com/tarang333"><img alt="Twitter" src="/social-icons/twitter.png" height="32px" width="32px"/></a>
 
 <br />
+
 ### Featured Projects:
 
 #### **ScribbleBow**
