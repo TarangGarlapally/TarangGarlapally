@@ -23,9 +23,17 @@
 ![Tarang's GitHub stats](https://github-readme-stats.vercel.app/api?username=TarangGarlapally&hide=stars&count_private=true&show_icons=true&theme=dark)
 
 
-###Featured Projects:
+### Featured Projects:
+
+#### **ScribbleBow**
+
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=TarangGarlapally&repo=scribblebow&theme=dark)](https://github.com/TarangGarlapally/scribblebow)
 
 
+
+#### **Password Generator API**
+
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=TarangGarlapally&repo=PasswordGeneratorAPI&theme=dark)](https://github.com/TarangGarlapally/PasswordGeneratorAPI)
 
 Generates a strong password by selecting 1 out of many
 implemented algorithms at random taking a name and a date.
