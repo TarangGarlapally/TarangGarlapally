@@ -1,5 +1,5 @@
 ### Hi there 👋
-![Tarang's Bitmoji](/my_bitmoji_transparent.png)
+<img alt="Tarang's Bitmoji" src="/my_bitmoji_transparent.png" width="250px" height="250px"></img>
 #### I'm an undergraduate student studying **Computer Science and Engineering** 💻
  
  - 👨‍💻 I can work with the languages:
