@@ -25,13 +25,13 @@
 
 ###Featured Projects:
 
-* **ScribbleBow**
+#### **ScribbleBow**
 
 [![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=TarangGarlapally&repo=scribblebow&theme=dark)](https://github.com/TarangGarlapally/scribblebow)
 
 
 
-* **Password Generator API**
+#### **Password Generator API**
 
 [![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=TarangGarlapally&repo=PasswordGeneratorAPI&theme=dark)](https://github.com/TarangGarlapally/PasswordGeneratorAPI)
 
