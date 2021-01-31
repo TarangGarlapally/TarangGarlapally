@@ -22,7 +22,14 @@
 ### My GitHub Stats!
 ![Tarang's GitHub stats](https://github-readme-stats.vercel.app/api?username=TarangGarlapally&hide=stars&count_private=true&show_icons=true&theme=dark)
 
+Find me on
 
+<a href="https://www.linkedin.com/in/taranggarlapally/"><img alt="LinkedIn" src="/social-icons/linkedin.png" height="32px" width="32px"/></a>
+<a href="https://www.facebook.com/taranggarlapally333"><img alt="Facebook" src="/social-icons/facebook.png" height="32px" width="32px"/></a>
+<a href="https://www.instagram.com/tarang_garlapally/"><img alt="Instagram" src="/social-icons/instagram.png" height="32px" width="32px"/></a>
+<a href="https://twitter.com/tarang333"><img alt="Twitter" src="/social-icons/twitter.png" height="32px" width="32px"/></a>
+
+<br />
 ### Featured Projects:
 
 #### **ScribbleBow**
