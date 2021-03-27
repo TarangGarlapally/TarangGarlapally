@@ -12,11 +12,14 @@
       * C
       * C++
       * JavaScript
+      * Dart
+      * PHP
  - I'm skilled at 🕸️ Web development with **ReactJS** framwork 
  - I'm good at **SQL**, **Firebase** and **MongoDB**
  - My skills include **Data Structures and Algorithms**
  - I have good **Problem solving skills**
  - I can build basic mobile apps with **Flutter** 📱
+ - Now diving deep into Machine Learning and Artificial Intelligence
  
 <br />
 
