@@ -20,7 +20,8 @@
  - I have good **Problem solving skills**
  - I can build basic mobile apps with **Flutter** 📱
  - Now diving deep into Machine Learning and Artificial Intelligence
- ![taranggarlapally.works](https://taranggarlapally.works)
+
+<a href="https://taranggarlapally.works">taranggarlapally.works</a>
  
 <br />
 
