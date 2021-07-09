@@ -21,7 +21,7 @@
  - I can build basic mobile apps with **Flutter** 📱
  - Now diving deep into Machine Learning and Artificial Intelligence
 
-<a href="https://taranggarlapally.works">taranggarlapally.works</a>
+<a href="https://taranggarlapally.works" target="_blank" >taranggarlapally.works</a>
  
 <br />
 
