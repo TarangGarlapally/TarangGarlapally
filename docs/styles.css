@@ -226,3 +226,17 @@ p {
 .bottomSpace {
   height: 50%;
 }
+
+
+.icon-gradient {
+  background: -webkit-linear-gradient(white, black);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.email {
+  color: white;
+  margin-top: 13%;
+  font-size: 14px;
+  margin-left: 6%;
+}
