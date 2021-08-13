@@ -240,3 +240,48 @@ p {
   font-size: 14px;
   margin-left: 6%;
 }
+
+
+
+
+
+
+/* Sidebar */
+
+
+.sideBarRight {
+  z-index: 200;
+  height: 100%;
+  width: 30%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  visibility: hidden;
+  box-shadow: 0 16px 16px 0 #000000;
+  color:  white;
+}
+
+.sideBarRightContent {
+  padding: 20px;
+}
+
+.sideBarRightContent hr {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  width: 40%;
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+}
+
+.sideBarRightContent ul li {
+  margin-top: 10px;
+}
+
+.sideBarRightContent img{
+  width: 90%;
+  height: auto;
+  display: block;
+  margin-left: 0;
+  margin-right: 0;
+  margin: auto;
+}
