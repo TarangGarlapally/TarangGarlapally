@@ -7,13 +7,11 @@
 #### 📖 I'm an undergraduate student studying **Computer Science and Engineering** 💻
  
  - 👨‍💻 I can work with the languages:
-      * Pyhton 
-      * Java
-      * C
+      * Java 
+      * Python
       * C++
+      * C
       * JavaScript
-      * Dart
-      * PHP
  - I'm skilled at 🕸️ Web development with **ReactJS** framwork 
  - I'm good at **SQL**, **Firebase** and **MongoDB**
  - My skills include **Data Structures and Algorithms**
