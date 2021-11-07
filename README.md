@@ -4,7 +4,8 @@
 </div>
 
 
-#### 📖 I'm an undergraduate student studying **Computer Science and Engineering** 💻
+#### 📖 I'm an undergraduate student studying **Computer Science and Engineering** 💻, graduating in 2022
+#### Previously interned at _**"Advance Auto Parts India"**_ as a _**"Software Engineer Intern"**_
  
  - 👨‍💻 I can work with the languages:
       * Java 
@@ -13,11 +14,12 @@
       * C
       * JavaScript
  - I'm skilled at 🕸️ Web development with **ReactJS** framwork 
+ - I have an experience building **microservices** with **Spring Boot** 
  - I'm good at **SQL**, **Firebase** and **MongoDB**
  - My skills include **Data Structures and Algorithms**
  - I have good **Problem solving skills**
- - I can build basic mobile apps with **Flutter** 📱
- - Now diving deep into Machine Learning and Artificial Intelligence
+ - I can build mobile apps with **React Native** 📱
+ - Currently working on a _**framework**_ which could provide developers with tools to train their models on private data without violating privacy.
 
 <a href="https://taranggarlapally.works" target="_blank" >taranggarlapally.works</a>
  
