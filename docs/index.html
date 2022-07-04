@@ -14,8 +14,8 @@
 	<div class="imageBox">
 		<div class="imageText">
 			<h2 class="text">Tarang Garlapally</h2><br />
-			<h4 class="text">Software Engineer Intern</h4>
-			<p class="text"><i class="text">Advance Auto Parts GCC</i></p>
+			<h4 class="text">Software Development Engineer Intern</h4>
+			<p class="text"><i class="text">Amazon</i></p>
 		</div>
 	</div>
 </div>
@@ -40,7 +40,14 @@
 			<div>
 			<h3>I'VE WORKED AT</h3>
 			<hr />
-			<div class="squareTileContainer" onclick="toggleSideBar()">
+			<div class="squareTileContainer" onclick="toggleSideBar('Amazon')">
+				<div class="squareTile">
+					<img class = "squareTileImage" src="https://pngimg.com/uploads/amazon/amazon_PNG11.png">
+					<h4><i class="fa fa-briefcase gradient"></i> Software Development Engineer Intern</h4>
+					<p><i class="fa fa-building gradient"></i> Amazon</p>
+				</div>
+			</div>
+			<div class="squareTileContainer" name="AAP" onclick="toggleSideBar('AAP')">
 				<div class="squareTile">
 					<img class = "squareTileImage" src="https://s1.q4cdn.com/172833328/files/design/client-logo.svg">
 					<h4><i class="fa fa-briefcase gradient"></i> Software Engineer Intern</h4>
@@ -94,6 +101,9 @@
 			<h3>TECH</h3>
 			<hr />
 			<div class="squareTileContainer">
+				<div class="miniTile">
+					<p>AWS</p>
+				</div>
 				<div class="miniTile">
 					<p>Spring boot</p>
 				</div>
@@ -188,7 +198,7 @@ hosted by GoPhysics
 </div>
 
 
-<div id = "sideBarRight" class = "sideBarRight">
+<div id = "sideBarRightAAP" class = "sideBarRight">
 	<div class="sideBarRightContent">
 		<h1>Software Engineer Intern</h1>
 		<br>
@@ -205,6 +215,21 @@ hosted by GoPhysics
 	</div>
 </div>
 
+<div id = "sideBarRightAmazon" class = "sideBarRight">
+	<div class="sideBarRightContent">
+		<h1>Software Development Engineer Intern</h1>
+		<br>
+		<h4><i>Amazon</i></h4>
+		<hr><br>
+		<ul>
+			<li>Worked on an impactful internal tool project in an agile environment</li>
+			<li>Built the tool using Java Based internal frameworks and ReactJS</li>
+			<li>Designed the system's functional POC</li>
+		</ul>
+		<br><br>
+		<img class = "squareTileImage" src="https://pngimg.com/uploads/amazon/amazon_PNG11.png">
+	</div>
+</div>
 
 <script type="text/javascript" src="script.js"></script>
 </body>

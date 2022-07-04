@@ -1,13 +1,13 @@
 var sideBarFlag = false;
 
 
-function toggleSideBar(){
+function toggleSideBar(companyName){
 	if(sideBarFlag === false){
-		document.getElementById("sideBarRight").style.visibility = "visible"; 
+		document.getElementById("sideBarRight" + companyName).style.visibility = "visible"; 
 		sideBarFlag = true;
 	}
 	else {
-		document.getElementById("sideBarRight").style.visibility = "hidden"; 
+		document.getElementById("sideBarRight" + companyName).style.visibility = "hidden"; 
 		sideBarFlag = false;
 	}
 }
