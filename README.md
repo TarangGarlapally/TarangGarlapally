@@ -4,8 +4,7 @@
 </div>
 
 
-#### 📖 I'm an undergraduate student studying **Computer Science and Engineering** 💻, graduating in 2022
-#### Previously interned at _**"Advance Auto Parts India"**_ as a _**"Software Engineer Intern"**_
+#### 📖 I'm a software engineer 💻, graduated in 2022
  
  - 👨‍💻 I can work with the languages:
       * Java 
