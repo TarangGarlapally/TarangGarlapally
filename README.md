@@ -4,7 +4,7 @@
 </div>
 
 
-#### 📖 I'm a software engineer 💻, graduated in 2022
+#### 📖 I'm a software engineer 💻
  
  - 👨‍💻 I can work with the languages:
       * Java 
