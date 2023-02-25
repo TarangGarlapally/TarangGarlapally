@@ -18,8 +18,7 @@
  - My skills include **Data Structures and Algorithms**
  - I have good **Problem solving skills**
  - I can build mobile apps with **React Native** 📱
- - Currently working on a _**framework**_ which could provide developers with tools to train their models on private data without violating privacy.
-
+ 
 <a href="https://taranggarlapally.works" target="_blank" >taranggarlapally.works</a>
  
 <br />
