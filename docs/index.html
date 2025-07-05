@@ -1,261 +1,144 @@
 <!DOCTYPE html>
-<html>
-<head>	
-	<title>Tarang Garlapally</title>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Tarang Garlapally | Portfolio</title>
 	<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,300;1,200&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,300;1,200&display=swap" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-<div class="leftBox">
-	<div class="imageBox">
-		<div class="imageText">
-			<h2 class="text">Tarang Garlapally</h2><br />
-			<h4 class="text">Software Development Engineer</h4>
-			<p class="text"><i class="text">Amazon</i></p>
-		</div>
-	</div>
-</div>
-
-<div class="bottomBox">
-	<div class="socialLinks">
-		<a href="https://www.linkedin.com/in/taranggarlapally/" target="_blank"><i class='fa fa-linkedin socialButton' style='font-size:24px; background: transparent;'></i></a>
-		<a href="https://github.com/TarangGarlapally/" target="_blank"><i class='fa fa-github socialButton' style='font-size:24px; background: transparent;'></i></a>
-		<a href="https://twitter.com/tarang333" target="_blank"><i class='fa fa-twitter socialButton' style='font-size:24px; background: transparent;'></i></a>
-	</div>
-	<p class="email"><i class="fa fa-envelope icon-gradient"></i> taranggarlapally@gmail.com</p>
-</div>
-
-<div class="rightBox">
-	<div class="inRight myscroller-notrack">
-		<div class="header">
-			<h1>Hi There!</h1>
-			<br />
-			<p style="display:  inline-block">I'm &nbsp;<p style="display:  inline-block; font-size: 24px;">Tarang Garlapally</p></p>
-		</div>
-		<div class="section">
-			<div>
-			<h3>I'VE WORKED AT</h3>
-			<hr />
-			<div class="squareTileContainer" onclick="toggleSideBar('AmazonFTE')">
-				<div class="squareTile">
-					<img class = "squareTileImage" src="https://pngimg.com/uploads/amazon/amazon_PNG11.png">
-					<h4><i class="fa fa-briefcase gradient"></i> Software Development Engineer</h4>
-					<p><i class="fa fa-building gradient"></i> Amazon</p>
-				</div>
+	<button class="sidebar-toggle-btn" id="sidebarToggleBtn" aria-label="Toggle sidebar">☰</button>
+	<canvas id="techy-bg-canvas"></canvas>
+	<div id="background-techy"></div>
+	<header class="site-header">
+		<aside class="sidebar" id="profile-sidebar">
+			<div class="profile-pic-container">
+				<!-- Profile image -->
+				<img src="Tarang2.jpg" alt="Tarang Garlapally" class="profile-pic" />
 			</div>
-			<div class="squareTileContainer" onclick="toggleSideBar('Amazon')">
-				<div class="squareTile">
-					<img class = "squareTileImage" src="https://pngimg.com/uploads/amazon/amazon_PNG11.png">
-					<h4><i class="fa fa-briefcase gradient"></i> Software Development Engineer Intern</h4>
-					<p><i class="fa fa-building gradient"></i> Amazon</p>
-				</div>
+			<div class="profile-info">
+				<h1>Tarang Garlapally</h1>
+				<h2>Software Development Engineer</h2>
+				<p class="company">Amazon</p>
 			</div>
-			<div class="squareTileContainer" name="AAP" onclick="toggleSideBar('AAP')">
-				<div class="squareTile">
-					<img class = "squareTileImage" src="https://s1.q4cdn.com/172833328/files/design/client-logo.svg">
-					<h4><i class="fa fa-briefcase gradient"></i> Software Engineer Intern</h4>
-					<p><i class="fa fa-building gradient"></i> Advance Auto Parts GCC</p>
-				</div>
+			<nav class="social-links">
+				<a href="https://www.linkedin.com/in/taranggarlapally/" target="_blank" aria-label="LinkedIn"><i class="fa fa-linkedin"></i></a>
+				<a href="https://github.com/TarangGarlapally/" target="_blank" aria-label="GitHub"><i class="fa fa-github"></i></a>
+				<a href="https://twitter.com/tarang333" target="_blank" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
+			</nav>
+			<div class="contact-email">
+				<i class="fa fa-envelope"></i> taranggarlapally@gmail.com
 			</div>
+		</aside>
+	</header>
+	<main class="main-content">
+		<section class="hero-section">
+			<span class="typewriter">Hi There!</span>
+			<p>I'm <span class="shimmer">Tarang Garlapally</span></p>
+		</section>
+		<section class="experience-section">
+			<h2>I've Worked At</h2>
+			<div class="experience-cards">
+				<article class="experience-card" data-company="AmazonFTE">
+					<img src="https://pngimg.com/uploads/amazon/amazon_PNG11.png" alt="Amazon logo" class="company-logo" />
+					<h3>Software Development Engineer</h3>
+					<p>Amazon</p>
+				</article>
+				<article class="experience-card" data-company="Amazon">
+					<img src="https://pngimg.com/uploads/amazon/amazon_PNG11.png" alt="Amazon logo" class="company-logo" />
+					<h3>Software Development Engineer Intern</h3>
+					<p>Amazon</p>
+				</article>
+				<article class="experience-card" data-company="AAP">
+					<img src="https://s1.q4cdn.com/172833328/files/design/client-logo.svg" alt="Advance Auto Parts logo" class="company-logo" />
+					<h3>Software Engineer Intern</h3>
+					<p>Advance Auto Parts GCC</p>
+				</article>
 			</div>
-		</div>
-		<br />
-		<div class="section">
-			<h3>I'VE BUILT</h3>
-			<hr />
-			<div class="squareTileContainer">
-				<div class="squareTile">
-					<div class="space"></div>
-					<h4>FedStation</h4>
-				</div>
-				<div class="squareTile">
-					<img class = "squareTileImage" src="ScribbleBow.png">
-					<h4>ScribbleBow</h4>
-				</div>
-				<div class="squareTile">
-					<div class="space"></div>
-					<h4>Password Generator API</h4>
-				</div>
-				<div class="squareTile">
-					<div class="space"></div>
-					<h4>Rem!ndMe</h4>
-				</div>
+		</section>
+		<section class="projects-section">
+			<h2>I've Built</h2>
+			<div class="project-cards">
+				<article class="project-card">
+					<h3>FedStation</h3>
+				</article>
+				<article class="project-card">
+					<img src="ScribbleBow.png" alt="ScribbleBow logo" class="project-logo" />
+					<h3>ScribbleBow</h3>
+				</article>
+				<article class="project-card">
+					<h3>Password Generator API</h3>
+				</article>
+				<article class="project-card">
+					<h3>Rem!ndMe</h3>
+				</article>
 			</div>
-		</div>
-		<br />
-		<div class="section">
-			<h3>EDUCATION</h3>
-			<hr />
-			<div class="squareTileContainer">
-				<div class="squareTile">
-					<img class = "squareTileImage2" src="https://upload.wikimedia.org/wikipedia/en/thumb/4/47/VNRVJIETLogo.png/135px-VNRVJIETLogo.png">
-					<h4>Computer Science and Engineering</h4>
+		</section>
+		<section class="education-section">
+			<h2>Education</h2>
+			<div class="education-cards">
+				<article class="education-card">
+					<img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/47/VNRVJIETLogo.png/135px-VNRVJIETLogo.png" alt="VNRVJIET logo" class="school-logo" />
+					<h3>Computer Science and Engineering</h3>
 					<p>8.8/10</p>
 					<p>2018-2022</p>
-					<h5>VNRVJIET</h5>
-				</div>
-				<div class="squareTile">
-					<div class="space"></div>
-					<h4>Intermediate - MPC</h4>
+					<h4>VNRVJIET</h4>
+				</article>
+				<article class="education-card">
+					<h3>Intermediate - MPC</h3>
 					<p>97.5/100</p>
 					<p>2016-2018</p>
-					<h5>Narayana Jr. College</h5>
-				</div>
+					<h4>Narayana Jr. College</h4>
+				</article>
 			</div>
-		</div>
-		<br />
-		<div class="section">
-			<h3>TECH</h3>
-			<hr />
-			<div class="squareTileContainer">
-				<div class="miniTile">
-					<p>AWS</p>
-				</div>
-				<div class="miniTile">
-					<p>Spring boot</p>
-				</div>
-				<div class="miniTile">
-					<p>ReactJS</p>
-				</div>
-				<div class="miniTile">
-					<p>Data Structures</p>
-				</div>
-				<div class="miniTile">
-					<p>OOPs</p>
-				</div>
-				<div class="miniTile">
-					<p>App Development</p>
-				</div>
-				<div class="miniTile">
-					<p>DBMS</p>
-				</div>
-				<div class="miniTile">
-					<p>React Native</p>
-				</div>
-				<div class="miniTile">
-					<p>Git</p>
-				</div>
-				<div class="miniTile">
-					<p>REST APIs</p>
-				</div>
-				<div class="miniTile">
-					<p>SQL</p>
-				</div>
-				<div class="miniTile">
-					<p>NoSQL</p>
-				</div>
-				<div class="miniTile">
-					<p>Firebase</p>
-				</div>
-				<div class="miniTile">
-					<p>NodeJS</p>
-				</div>
-				<div class="miniTile">
-					<p>Algorithms</p>
-				</div>
+		</section>
+		<section class="skills-section">
+			<h2>Tech</h2>
+			<div class="skills-list">
+				<span class="skill-badge">AWS</span>
+				<span class="skill-badge">Spring Boot</span>
+				<span class="skill-badge">ReactJS</span>
+				<span class="skill-badge">Data Structures</span>
+				<span class="skill-badge">OOPs</span>
+				<span class="skill-badge">App Development</span>
+				<span class="skill-badge">DBMS</span>
+				<span class="skill-badge">React Native</span>
+				<span class="skill-badge">Git</span>
+				<span class="skill-badge">REST APIs</span>
+				<span class="skill-badge">SQL</span>
+				<span class="skill-badge">NoSQL</span>
+				<span class="skill-badge">Firebase</span>
+				<span class="skill-badge">NodeJS</span>
+				<span class="skill-badge">Algorithms</span>
 			</div>
-		</div>
-		<br />
-		<br />
-		<br />
-		<br />
-		<div class="section">
-			<h3>PROGRAMMING LANGUAGES</h3>
-			<hr />
-			<div class="squareTileContainer">
-				<div class="miniTile">
-					<p>Java</p>
-				</div>
-				<div class="miniTile">
-					<p>Python</p>
-				</div>
-				<div class="miniTile">
-					<p>C++</p>
-				</div>
-				<div class="miniTile">
-					<p>C</p>
-				</div>
-				<div class="miniTile">
-					<p>JavaScript</p>
-				</div>
+		</section>
+		<section class="languages-section">
+			<h2>Programming Languages</h2>
+			<div class="languages-list">
+				<span class="language-badge">Java</span>
+				<span class="language-badge">Python</span>
+				<span class="language-badge">C++</span>
+				<span class="language-badge">C</span>
+				<span class="language-badge">JavaScript</span>
 			</div>
-		</div>
-		<br />
-		<div class="section">
-			<h3>ACHIEVEMENTS</h3>
-			<hr />
-			<div class="squareTileContainer">
-				<div class="blockquoteLeft">
-					Led the team and secured 4th position in NASA SpaceApps
-Challenge at an inter-college level as a team leader
-				</div>
-				<div class="blockquoteRight">
-					Secured 1st position in a technical writing competition
-hosted by GoPhysics
-				</div>
+		</section>
+		<section class="achievements-section">
+			<h2>Achievements</h2>
+			<div class="achievements-list">
+				<blockquote class="achievement">Led the team and secured 4th position in NASA SpaceApps Challenge at an inter-college level as a team leader</blockquote>
+				<blockquote class="achievement">Secured 1st position in a technical writing competition hosted by GoPhysics</blockquote>
 			</div>
-		</div>
-
-
-		<div class="bottomSpace">
-		</div>
-
-	</div>
-	
-</div>
-
-
-<div id = "sideBarRightAAP" class = "sideBarRight">
-	<div class="sideBarRightContent">
-		<h1>Software Engineer Intern</h1>
-		<br>
-		<h4><i>Advance Auto Parts India</i></h4>
-		<hr><br>
-		<ul>
-			<li>Worked on an impactful real-time project in an agile environment</li>
-			<li>Built microservices using Spring Boot, Hibernate upon an SQL database</li>
-			<li>Collaborated with various teams involved</li>
-			<li>Also worked on frontend based on NextJS</li>
-		</ul>
-		<br><br>
-		<img class = "squareTileImage" src="https://s1.q4cdn.com/172833328/files/design/client-logo.svg">
-	</div>
-</div>
-
-<div id = "sideBarRightAmazon" class = "sideBarRight">
-	<div class="sideBarRightContent">
-		<h1>Software Development Engineer Intern</h1>
-		<br>
-		<h4><i>Amazon</i></h4>
-		<hr><br>
-		<ul>
-			<li>Worked on an impactful internal tool project in an agile environment</li>
-			<li>Built the tool using Java Based internal frameworks and ReactJS</li>
-			<li>Designed the system's functional POC</li>
-		</ul>
-		<br><br>
-		<img class = "squareTileImage" src="https://pngimg.com/uploads/amazon/amazon_PNG11.png">
-	</div>
-</div>
-
-<div id = "sideBarRightAmazonFTE" class = "sideBarRight">
-	<div class="sideBarRightContent">
-		<h1>Software Development Engineer</h1>
-		<br>
-		<h4><i>Amazon</i></h4>
-		<hr><br>
-		<ul>
-			<li>Currently working</li>
-		</ul>
-		<br><br>
-		<img class = "squareTileImage" src="https://pngimg.com/uploads/amazon/amazon_PNG11.png">
-	</div>
-</div>
-
-<script type="text/javascript" src="script.js"></script>
+		</section>
+	</main>
+	<footer class="site-footer">
+		<p>&copy; 2024 Tarang Garlapally. All rights reserved.</p>
+	</footer>
+	<script type="text/javascript" src="script.js"></script>
+	<script type="text/javascript" src="techy-bg.js"></script>
 </body>
 </html>
