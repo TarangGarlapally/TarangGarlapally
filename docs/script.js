@@ -21,7 +21,10 @@ function animateCardsOnScroll() {
     '.achievement'
   ];
   const cards = document.querySelectorAll(cardSelectors.join(','));
-  cards.forEach(card => card.classList.add('card-animate'));
+  cards.forEach((card, i) => {
+    card.classList.add('card-animate');
+    if (i < 6) card.classList.add('stagger-delay-' + (i + 1));
+  });
 
   const observer = new window.IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -48,7 +51,10 @@ document.addEventListener('DOMContentLoaded', function() {
     '.achievements-section'
   ];
   const sections = document.querySelectorAll(sectionSelectors.join(','));
-  sections.forEach(section => section.classList.add('section-animate'));
+  sections.forEach((section, i) => {
+    section.classList.add('section-animate');
+    if (i < 6) section.classList.add('stagger-delay-' + (i + 1));
+  });
 
   const observer = new window.IntersectionObserver((entries) => {
     entries.forEach(entry => {

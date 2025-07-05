@@ -19,9 +19,28 @@ body {
   top: 0; left: 0; width: 100vw; height: 100vh;
   z-index: 0;
   pointer-events: none;
-  background: radial-gradient(circle at 70% 20%, rgba(120,0,255,0.15) 0%, transparent 60%),
-              radial-gradient(circle at 20% 80%, rgba(0,200,255,0.10) 0%, transparent 70%);
-  /* Placeholder for future animated/techy effects */
+  background: linear-gradient(120deg, #23233a 0%, #a259ff 40%, #00dbde 100%);
+  background-size: 200% 200%;
+  animation: gradient-move 16s ease-in-out infinite alternate;
+  opacity: 0.92;
+}
+@keyframes gradient-move {
+  0% {
+    background-position: 0% 50%;
+    filter: blur(0px);
+  }
+  40% {
+    background-position: 100% 50%;
+    filter: blur(2px);
+  }
+  60% {
+    background-position: 50% 100%;
+    filter: blur(1.5px);
+  }
+  100% {
+    background-position: 0% 50%;
+    filter: blur(0.5px);
+  }
 }
 
 /***** SIDEBAR (PROFILE) *****/
@@ -212,7 +231,7 @@ section > h2 {
 .experience-card, .project-card, .education-card {
   background: rgba(36, 36, 56, 0.85);
   border-radius: 18px;
-  box-shadow: 0 4px 32px 0 rgba(120,0,255,0.10), 0 1.5px 0 0 #a259ff44;
+  box-shadow: 0 2px 8px 0 rgba(120,0,255,0.08), 0 1.5px 0 0 #a259ff22;
   padding: 28px 24px 20px 24px;
   min-width: 220px;
   max-width: 270px;
@@ -227,8 +246,9 @@ section > h2 {
 }
 .experience-card:hover, .project-card:hover, .education-card:hover {
   transform: translateY(-8px) scale(1.04);
-  box-shadow: 0 8px 32px 0 #a259ff55, 0 1.5px 0 0 #00dbde55;
-  border: 1.5px solid #a259ff;
+  box-shadow: 0 4px 16px 0 #a259ff88, 0 1.5px 0 0 #00dbde88;
+  border: 1.5px solid #00dbde;
+  filter: brightness(1.05) drop-shadow(0 0 4px #00dbde44);
 }
 .company-logo, .project-logo, .school-logo {
   width: 70px;
@@ -267,12 +287,12 @@ section > h2 {
   font-size: 0.98rem;
   padding: 8px 18px;
   border-radius: 22px;
-  box-shadow: 0 2px 12px 0 #a259ff22;
+  box-shadow: 0 1px 4px 0 #a259ff22;
   letter-spacing: 0.5px;
-  transition: background 0.2s, color 0.2s, transform 0.18s, box-shadow 0.18s;
+  transition: background 0.18s, color 0.18s, transform 0.12s, box-shadow 0.12s;
   cursor: pointer;
   border: none;
-  animation: float-badge 4s ease-in-out infinite alternate;
+  animation: float-badge 3.2s ease-in-out infinite alternate;
 }
 @keyframes float-badge {
   0% { transform: translateY(0); }
@@ -282,8 +302,8 @@ section > h2 {
   background: linear-gradient(90deg, #00dbde 10%, #a259ff 90%);
   color: #fff;
   transform: scale(1.12);
-  box-shadow: 0 0 16px 4px #00dbde88, 0 2px 12px 0 #a259ff44;
-  animation: pulse-glow 0.7s cubic-bezier(.4,2,.3,1) 1;
+  box-shadow: 0 0 8px 2px #00dbde66, 0 1px 4px 0 #a259ff33;
+  animation: pulse-glow 0.38s cubic-bezier(.4,2,.3,1) 1;
 }
 @keyframes pulse-glow {
   0% { box-shadow: 0 0 0 0 #00dbde88, 0 2px 12px 0 #a259ff44; }
@@ -329,31 +349,45 @@ section > h2 {
 }
 
 /***** CARD ANIMATIONS *****/
+.card-animate, .section-animate, .skill-badge, .language-badge, .profile-pic-container, .hero-section {
+  will-change: transform, opacity;
+}
 .card-animate {
   opacity: 0;
-  transform: translateY(40px) scale(0.98);
-  transition: opacity 0.7s cubic-bezier(.4,2,.3,1), transform 0.7s cubic-bezier(.4,2,.3,1);
+  transform: translateY(32px) scale(0.98);
+  transition: opacity 0.38s cubic-bezier(.4,2,.3,1), transform 0.38s cubic-bezier(.4,2,.3,1);
 }
 .card-animate.card-visible {
   opacity: 1;
   transform: translateY(0) scale(1);
 }
+.experience-card, .project-card, .education-card, .achievement {
+  box-shadow: 0 2px 8px 0 rgba(120,0,255,0.08), 0 1.5px 0 0 #a259ff22;
+}
 .experience-card:hover, .project-card:hover, .education-card:hover, .achievement:hover {
-  box-shadow: 0 8px 32px 0 #a259ffcc, 0 1.5px 0 0 #00dbdecc;
+  box-shadow: 0 4px 16px 0 #a259ff88, 0 1.5px 0 0 #00dbde88;
   border: 1.5px solid #00dbde;
-  filter: brightness(1.08) drop-shadow(0 0 8px #00dbde88);
+  filter: brightness(1.05) drop-shadow(0 0 4px #00dbde44);
 }
 
 /***** SECTION REVEAL ANIMATIONS *****/
 .section-animate {
   opacity: 0;
-  transform: translateY(60px);
-  transition: opacity 0.8s cubic-bezier(.4,2,.3,1), transform 0.8s cubic-bezier(.4,2,.3,1);
+  transform: translateY(40px);
+  transition: opacity 0.48s cubic-bezier(.4,2,.3,1), transform 0.48s cubic-bezier(.4,2,.3,1);
 }
 .section-animate.section-visible {
   opacity: 1;
   transform: translateY(0);
 }
+
+/***** STAGGERED ANIMATION DELAYS *****/
+.stagger-delay-1 { transition-delay: 0.04s !important; }
+.stagger-delay-2 { transition-delay: 0.08s !important; }
+.stagger-delay-3 { transition-delay: 0.12s !important; }
+.stagger-delay-4 { transition-delay: 0.16s !important; }
+.stagger-delay-5 { transition-delay: 0.20s !important; }
+.stagger-delay-6 { transition-delay: 0.24s !important; }
 
 /***** RESPONSIVE DESIGN *****/
 @media (max-width: 1100px) {
