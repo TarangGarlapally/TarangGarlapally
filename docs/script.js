@@ -448,3 +448,534 @@ if ('performance' in window) {
     }, 0);
   });
 }
+
+// STAR & GALAXY TRAIL ANIMATION
+(function() {
+  let lastX = 0, lastY = 0, lastTime = 0;
+  const persistentStars = [];
+  const MAX_PERSISTENT_STARS = 1000;
+  
+  // Cosmic effects system
+  let cosmicEffects = [];
+  let lastCosmicEffect = 0;
+  const COSMIC_EFFECT_INTERVAL = 8000; // 8 seconds between effects
+  let activeBlackHoles = []; // Track active black holes for gravitational effects
+  
+  function createCosmicEffect() {
+    const now = Date.now();
+    if (now - lastCosmicEffect < COSMIC_EFFECT_INTERVAL) return;
+    
+    lastCosmicEffect = now;
+    const x = Math.random() * window.innerWidth;
+    const y = Math.random() * window.innerHeight;
+    
+    createBlackHole(x, y);
+  }
+  
+  function createBlackHole(x, y) {
+    const blackhole = document.createElement('div');
+    blackhole.className = 'cosmic-blackhole';
+    blackhole.style.cssText = `
+      position: fixed;
+      left: ${x}px;
+      top: ${y}px;
+      width: 150px;
+      height: 150px;
+      z-index: 0;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+    `;
+    
+    // Create NASA-style black hole with only event horizon and photon ring (no accretion disk)
+    const svg = `
+      <svg viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="photon-ring" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#fffbe7" stop-opacity="0.2" />
+            <stop offset="80%" stop-color="#ffd700" stop-opacity="0.1" />
+            <stop offset="100%" stop-color="#fffbe7" stop-opacity="0.3" />
+          </radialGradient>
+        </defs>
+        
+        <!-- Thin photon ring -->
+        <ellipse cx="75" cy="75" rx="46" ry="16" fill="none" stroke="url(#photon-ring)" stroke-width="2.5" opacity="0.7" />
+        
+        <!-- Event horizon (perfect black) -->
+        <circle cx="75" cy="75" r="28" fill="#000" />
+      </svg>
+    `;
+    
+    blackhole.innerHTML = svg;
+    document.body.appendChild(blackhole);
+    cosmicEffects.push(blackhole);
+    
+    // Add black hole to active list for gravitational effects
+    const blackHoleData = {
+      element: blackhole,
+      x: x,
+      y: y,
+      created: Date.now(),
+      consumedStars: [],
+      isConsuming: false,
+      consumptionStartTime: null
+    };
+    activeBlackHoles.push(blackHoleData);
+    
+    // Start gravitational effect on nearby stars
+    startGravitationalEffect(blackHoleData);
+    
+    // Fade out after 12 seconds
+    setTimeout(() => {
+      blackhole.style.transition = 'opacity 5s ease-out';
+      blackhole.style.opacity = '0';
+      setTimeout(() => {
+        if (blackhole.parentNode) {
+          blackhole.parentNode.removeChild(blackhole);
+          const index = cosmicEffects.indexOf(blackhole);
+          if (index > -1) cosmicEffects.splice(index, 1);
+        }
+        // Remove from active black holes
+        const bhIndex = activeBlackHoles.findIndex(bh => bh.element === blackhole);
+        if (bhIndex > -1) activeBlackHoles.splice(bhIndex, 1);
+      }, 5000);
+    }, 12000);
+  }
+  
+  function startGravitationalEffect(blackHoleData) {
+    const gravitationalRadius = 200; // Radius of gravitational influence
+    const checkInterval = 500; // Check for nearby stars every 500ms
+    
+    let diskFadedIn = false;
+    let diskFadeOutTimeout = null;
+
+    const gravitationalCheck = setInterval(() => {
+      if (!blackHoleData.element.parentNode) {
+        clearInterval(gravitationalCheck);
+        return;
+      }
+      
+      // Check all persistent stars for gravitational pull
+      persistentStars.forEach((starContainer, index) => {
+        if (!starContainer.parentNode) return;
+        
+        const starRect = starContainer.getBoundingClientRect();
+        const starX = starRect.left + starRect.width / 2;
+        const starY = starRect.top + starRect.height / 2;
+        
+        const distance = Math.sqrt(
+          Math.pow(starX - blackHoleData.x, 2) + 
+          Math.pow(starY - blackHoleData.y, 2)
+        );
+        
+        if (distance < gravitationalRadius && !blackHoleData.consumedStars.includes(starContainer)) {
+          // Star is within gravitational influence - start spiral effect
+          blackHoleData.consumedStars.push(starContainer);
+          
+          // Fade in accretion disk if not already
+          if (!diskFadedIn) {
+            diskFadedIn = true;
+            setAccretionDiskOpacity(blackHoleData.element.querySelector('svg'), 1, 1500);
+          }
+          
+          // Start consumption effect if not already consuming
+          if (!blackHoleData.isConsuming) {
+            blackHoleData.isConsuming = true;
+            blackHoleData.consumptionStartTime = Date.now();
+            updateEventHorizonColor(blackHoleData, true);
+          }
+          
+          createSpiralEffect(starContainer, blackHoleData);
+        }
+      });
+      
+      // Check if consumption is complete
+      if (blackHoleData.isConsuming && blackHoleData.consumedStars.length > 0) {
+        const allStarsConsumed = blackHoleData.consumedStars.every(star => !star.parentNode);
+        if (allStarsConsumed) {
+          // All stars have been consumed, return to normal
+          setTimeout(() => {
+            blackHoleData.isConsuming = false;
+            blackHoleData.consumptionStartTime = null;
+            updateEventHorizonColor(blackHoleData, false);
+          }, 2000); // Wait 2 seconds after last star is consumed
+
+          // Fade out accretion disk after a short delay
+          if (diskFadedIn && !diskFadeOutTimeout) {
+            diskFadeOutTimeout = setTimeout(() => {
+              setAccretionDiskOpacity(blackHoleData.element.querySelector('svg'), 0, 1500);
+              diskFadedIn = false;
+              diskFadeOutTimeout = null;
+            }, 2000);
+          }
+        }
+      }
+    }, checkInterval);
+  }
+  
+  function updateEventHorizonColor(blackHoleData, isConsuming) {
+    const eventHorizon = blackHoleData.element.querySelector('circle[fill="#000"]');
+    const blackHoleCore = blackHoleData.element.querySelector('circle[fill="#000"]');
+    const outerAccretion = blackHoleData.element.querySelector('ellipse[rx="70"]');
+    const innerAccretion = blackHoleData.element.querySelector('ellipse[rx="55"]');
+    
+    if (!eventHorizon || !blackHoleCore) return;
+    
+    if (isConsuming) {
+      // Create realistic accretion disk heating effect with orange-red colors
+      const heatingGradient = `
+        <radialGradient id="heating-horizon" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" style="stop-color:#000000;stop-opacity:1" />
+          <stop offset="30%" style="stop-color:#1a0000;stop-opacity:0.98" />
+          <stop offset="60%" style="stop-color:#330000;stop-opacity:0.95" />
+          <stop offset="100%" style="stop-color:#660000;stop-opacity:0.9" />
+        </radialGradient>
+        <radialGradient id="heated-accretion" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" style="stop-color:#ff2200;stop-opacity:0.9" />
+          <stop offset="30%" style="stop-color:#ff4400;stop-opacity:0.7" />
+          <stop offset="60%" style="stop-color:#ff6600;stop-opacity:0.5" />
+          <stop offset="100%" style="stop-color:#ff8800;stop-opacity:0.3" />
+        </radialGradient>
+        <radialGradient id="heated-inner" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" style="stop-color:#ff0000;stop-opacity:1" />
+          <stop offset="40%" style="stop-color:#ff2200;stop-opacity:0.8" />
+          <stop offset="80%" style="stop-color:#ff4400;stop-opacity:0.6" />
+          <stop offset="100%" style="stop-color:#ff6600;stop-opacity:0.4" />
+        </radialGradient>
+      `;
+      
+      // Add gradient to defs if not exists
+      let defs = blackHoleData.element.querySelector('defs');
+      if (!defs) {
+        defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+        blackHoleData.element.querySelector('svg').insertBefore(defs, blackHoleData.element.querySelector('svg').firstChild);
+      }
+      
+      // Remove existing heating gradients if exists
+      const existingGradients = defs.querySelectorAll('#heating-horizon, #heated-accretion, #heated-inner');
+      existingGradients.forEach(g => g.remove());
+      
+      // Add new gradients
+      defs.insertAdjacentHTML('beforeend', heatingGradient);
+      
+      // Apply realistic heating effect with subtle blur
+      eventHorizon.setAttribute('fill', 'url(#heating-horizon)');
+      eventHorizon.style.filter = 'blur(0.4px)';
+      eventHorizon.style.transition = 'all 5s ease-in-out';
+      
+      blackHoleCore.setAttribute('fill', '#0a0a0a');
+      blackHoleCore.style.filter = 'blur(0.2px)';
+      blackHoleCore.style.transition = 'all 5s ease-in-out';
+      
+      // Heat up accretion disk with realistic intensity
+      if (outerAccretion) {
+        outerAccretion.setAttribute('stroke', 'url(#heated-accretion)');
+        outerAccretion.style.filter = 'blur(1.5px)';
+        outerAccretion.style.strokeWidth = '3';
+        outerAccretion.style.transition = 'all 5s ease-in-out';
+      }
+      
+      if (innerAccretion) {
+        innerAccretion.setAttribute('stroke', 'url(#heated-inner)');
+        innerAccretion.style.filter = 'blur(1px)';
+        innerAccretion.style.strokeWidth = '4';
+        innerAccretion.style.transition = 'all 5s ease-in-out';
+      }
+      
+      // Add subtle heating animation
+      eventHorizon.style.animation = 'accretion-heating 3s ease-in-out infinite';
+      blackHoleCore.style.animation = 'accretion-heating 3s ease-in-out infinite';
+      
+    } else {
+      // Return to normal with realistic cooling
+      eventHorizon.style.transition = 'all 3s ease-in-out';
+      blackHoleCore.style.transition = 'all 3s ease-in-out';
+      
+      // Remove heating gradients
+      const heatingGradients = blackHoleData.element.querySelectorAll('#heating-horizon, #heated-accretion');
+      heatingGradients.forEach(g => g.remove());
+      
+      // Return to original colors and remove blur
+      eventHorizon.setAttribute('fill', '#000');
+      blackHoleCore.setAttribute('fill', '#000');
+      
+      // Cool down accretion disk
+      if (outerAccretion) {
+        outerAccretion.setAttribute('stroke', 'url(#accretion-disk)');
+        outerAccretion.style.filter = '';
+        outerAccretion.style.strokeWidth = '3';
+        outerAccretion.style.transition = 'all 3s ease-in-out';
+      }
+      
+      if (innerAccretion) {
+        innerAccretion.setAttribute('stroke', 'url(#accretion-disk)');
+        innerAccretion.style.filter = '';
+        innerAccretion.style.strokeWidth = '2';
+        innerAccretion.style.transition = 'all 3s ease-in-out';
+      }
+      
+      // Remove heating animation
+      eventHorizon.style.animation = '';
+      blackHoleCore.style.animation = '';
+    }
+  }
+
+  function createSpiralEffect(starContainer, blackHoleData) {
+    const star = starContainer.querySelector('.star-trail-star--core');
+    if (!star) return;
+    
+    // Completely stop all animations
+    star.style.animation = 'none';
+    starContainer.style.animation = 'none';
+    
+    // Get current position
+    const starRect = starContainer.getBoundingClientRect();
+    const currentX = starRect.left + starRect.width / 2;
+    const currentY = starRect.top + starRect.height / 2;
+    
+    // Calculate distance to black hole
+    const startLeft = starContainer.offsetLeft;
+    const startTop = starContainer.offsetTop;
+    const endLeft = blackHoleData.x;
+    const endTop = blackHoleData.y;
+    
+    // Animate container to black hole center
+    const duration = 500;
+    const startTime = performance.now();
+    function animateMove(now) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const newLeft = startLeft + (endLeft - startLeft) * progress;
+      const newTop = startTop + (endTop - startTop) * progress;
+      starContainer.style.position = 'fixed';
+      starContainer.style.left = newLeft + 'px';
+      starContainer.style.top = newTop + 'px';
+      if (progress < 1) {
+        requestAnimationFrame(animateMove);
+      } else {
+        // Once at the black hole, start the spiral effect
+        startSpiral();
+      }
+    }
+    requestAnimationFrame(animateMove);
+    
+    function startSpiral() {
+      // Get new position (should be at black hole center)
+      const starRect2 = starContainer.getBoundingClientRect();
+      const currentX2 = starRect2.left + starRect2.width / 2;
+      const currentY2 = starRect2.top + starRect2.height / 2;
+      // Calculate initial distance and angle from black hole
+      const distanceX = currentX2 - blackHoleData.x;
+      const distanceY = currentY2 - blackHoleData.y;
+      const initialDistance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+      const initialAngle = Math.atan2(distanceY, distanceX);
+      // Make star absolute inside container
+      star.style.position = 'absolute';
+      star.style.left = '0px';
+      star.style.top = '0px';
+      // Spiral parameters
+      const spiralDuration = 4000 + Math.random() * 2000; // 4-6 seconds
+      const startRadius = Math.max(initialDistance, 46); // photon ring radius
+      const endRadius = 10; // disappear into event horizon
+      const spiralStartTime = Date.now();
+      function animateSpiral() {
+        const elapsed = Date.now() - spiralStartTime;
+        const progress = Math.min(elapsed / spiralDuration, 1);
+        const totalAngle = initialAngle + progress * Math.PI * 8;
+        const radius = startRadius - (startRadius - endRadius) * progress;
+        const scale = 1 - 0.9 * progress;
+        const opacity = 1 - progress;
+        const orbitX = Math.cos(totalAngle) * radius;
+        const orbitY = Math.sin(totalAngle) * radius;
+        star.style.transform = `translate(${orbitX}px, ${orbitY}px) scale(${scale})`;
+        star.style.opacity = opacity;
+        if (progress < 1) {
+          requestAnimationFrame(animateSpiral);
+        } else {
+          if (starContainer.parentNode) {
+            starContainer.parentNode.removeChild(starContainer);
+            const index = persistentStars.indexOf(starContainer);
+            if (index > -1) persistentStars.splice(index, 1);
+          }
+        }
+      }
+      requestAnimationFrame(animateSpiral);
+    }
+  }
+
+  // Start cosmic effects
+  setInterval(createCosmicEffect, 1000);
+  
+  document.addEventListener('mousemove', function(e) {
+    const now = Date.now();
+    if (Math.abs(e.clientX - lastX) > 3 || Math.abs(e.clientY - lastY) > 3 || now - lastTime > 10) {
+      lastX = e.clientX;
+      lastY = e.clientY;
+      lastTime = now;
+      for (let i = 0; i < 2 + Math.floor(Math.random() * 2); i++) {
+        const offsetX = e.clientX + (Math.random() - 0.5) * 24;
+        const offsetY = e.clientY + (Math.random() - 0.5) * 24;
+        createStar(offsetX, offsetY);
+      }
+      if (Math.random() < 0.05) createGalaxy(e.clientX, e.clientY);
+    }
+  });
+
+  function createStar(x, y) {
+    const star = document.createElement('div');
+    const types = ['white', 'blue', 'yellow', 'pink'];
+    const type = types[Math.floor(Math.random() * types.length)];
+    let shape = 'dot';
+    const r = Math.random();
+    if (r > 0.96) shape = 'sparkle';
+    else if (r > 0.92) shape = 'cross';
+    let size = 3 + Math.random() * 3;
+    if (shape === 'sparkle') size = 10;
+    if (shape === 'cross') size = 8;
+    star.className = `star-trail-star star-trail-star--${type}`;
+    if (shape !== 'dot') star.classList.add(`star-trail-star--${shape}`);
+    star.style.width = size + 'px';
+    star.style.height = size + 'px';
+    star.style.left = (x - size / 2) + 'px';
+    star.style.top = (y - size / 2) + 'px';
+    star.style.position = 'fixed';
+    star.style.pointerEvents = 'none';
+    star.style.zIndex = 0;
+    star.style.opacity = 0.65 + Math.random() * 0.25;
+    star.style.willChange = 'transform, opacity';
+    document.body.appendChild(star);
+    
+    setTimeout(() => {
+      // Replace with persistent core for interstellar arc motion
+      const container = document.createElement('div');
+      container.className = 'star-arc-container';
+      container.style.left = x + 'px';
+      container.style.top = y + 'px';
+      container.style.willChange = 'transform';
+      container.style.zIndex = 0;
+      
+      const core = document.createElement('div');
+      core.className = `star-trail-star star-trail-star--core star-trail-star--${type}`;
+      core.style.willChange = 'transform, opacity';
+      core.style.zIndex = 0;
+      
+      const moveDurationNum = 20 + Math.random() * 12;
+      const moveDuration = moveDurationNum.toFixed(2) + 's';
+      const moveDelay = (Math.random() * 0.5) + 's';
+      
+      let twinkle = false;
+      if (Math.random() < 0.4) twinkle = true;
+      
+      if (twinkle) {
+        core.classList.add('sparkle-twinkle');
+        const twinkleDelay = (Math.random() * 1.2) + 's';
+        core.style.animation = `core-twinkle 1.2s ease-in-out infinite ${twinkleDelay}, star-arc-move ${moveDuration} linear forwards ${moveDelay}`;
+      } else {
+        core.style.animation = `star-arc-move ${moveDuration} linear forwards ${moveDelay}`;
+      }
+      
+      container.appendChild(core);
+      document.body.appendChild(container);
+      persistentStars.push(container);
+      
+      // Clean up old stars
+      if (persistentStars.length > MAX_PERSISTENT_STARS) {
+        const old = persistentStars.shift();
+        if (old && old.parentNode) {
+          old.parentNode.removeChild(old);
+        }
+      }
+      
+      // Clean up after animation
+      setTimeout(() => {
+        if (container.parentNode) {
+          container.parentNode.removeChild(container);
+          // Remove from array
+          const index = persistentStars.indexOf(container);
+          if (index > -1) persistentStars.splice(index, 1);
+        }
+      }, (moveDurationNum + parseFloat(moveDelay)) * 1000);
+      
+      star.remove();
+    }, 100);
+  }
+
+  function createGalaxy(x, y) {
+    const galaxy = document.createElement('div');
+    galaxy.className = 'star-trail-galaxy';
+    const size = 48 + Math.random() * 32;
+    galaxy.style.width = size + 'px';
+    galaxy.style.height = size + 'px';
+    galaxy.style.left = (x - size / 2) + 'px';
+    galaxy.style.top = (y - size / 2) + 'px';
+    galaxy.style.willChange = 'transform, opacity';
+    galaxy.style.zIndex = 0;
+    document.body.appendChild(galaxy);
+    setTimeout(() => {
+      if (galaxy.parentNode) galaxy.parentNode.removeChild(galaxy);
+    }, 1400);
+  }
+
+  // Helper to fade accretion disk group
+  function setAccretionDiskOpacity(svgElement, targetOpacity, duration = 1500) {
+    const diskGroup = svgElement.querySelector('#accretion-disk-group');
+    if (!diskGroup) return;
+    const startOpacity = parseFloat(diskGroup.getAttribute('opacity')) || 0;
+    const startTime = performance.now();
+    function animate(now) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const newOpacity = startOpacity + (targetOpacity - startOpacity) * progress;
+      diskGroup.setAttribute('opacity', newOpacity);
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        diskGroup.setAttribute('opacity', targetOpacity);
+      }
+    }
+    requestAnimationFrame(animate);
+  }
+})();
+
+// --- RANDOM SPARKLE STARS ---
+function spawnRandomSparkleStar() {
+  const star = document.createElement('div');
+  star.className = 'star-trail-star star-trail-star--core sparkle-twinkle sparkle-popin';
+  // Random position (avoid edges)
+  const margin = 40;
+  const x = Math.random() * (window.innerWidth - margin * 2) + margin;
+  const y = Math.random() * (window.innerHeight - margin * 2) + margin;
+  star.style.position = 'fixed';
+  star.style.left = x + 'px';
+  star.style.top = y + 'px';
+  star.style.zIndex = '0';
+  star.style.pointerEvents = 'none';
+  star.style.opacity = '0';
+  star.style.transition = 'opacity 0.3s cubic-bezier(0.4,0,0.2,1)';
+  document.body.appendChild(star);
+  // Fade in
+  setTimeout(() => { star.style.opacity = '1'; }, 10);
+  // Sparkle intensely
+  star.classList.add('sparkle-twinkle-intense');
+  // Fade out and remove after 1.5s
+  setTimeout(() => {
+    star.style.opacity = '0';
+    setTimeout(() => {
+      if (star.parentNode) star.parentNode.removeChild(star);
+    }, 400);
+  }, 1500);
+}
+
+function scheduleRandomSparkleStar() {
+  const nextDelay = 2000 + Math.random() * 4000; // 2–6s
+  setTimeout(() => {
+    spawnRandomSparkleStar();
+    scheduleRandomSparkleStar();
+  }, nextDelay);
+}
+
+// Start the random sparkle stars on DOMContentLoaded
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', scheduleRandomSparkleStar);
+} else {
+  scheduleRandomSparkleStar();
+}
