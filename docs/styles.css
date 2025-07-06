@@ -309,6 +309,13 @@ body::after {
   transform: scaleX(1);
 }
 
+.project-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
 .card h3 {
   color: var(--accent-primary);
   font-size: 1.2rem;
