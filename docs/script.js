@@ -805,6 +805,7 @@ if ('performance' in window) {
   // Start cosmic effects
   setInterval(createCosmicEffect, 1000);
   
+  // Mouse-based star trail
   document.addEventListener('mousemove', function(e) {
     const now = Date.now();
     if (Math.abs(e.clientX - lastX) > 3 || Math.abs(e.clientY - lastY) > 3 || now - lastTime > 10) {
@@ -819,6 +820,27 @@ if ('performance' in window) {
       if (Math.random() < 0.05) createGalaxy(e.clientX, e.clientY);
     }
   });
+
+  // Touch-based star trail for mobile
+  function handleTouchTrail(e) {
+    if (e.touches && e.touches.length > 0) {
+      const touch = e.touches[0];
+      const now = Date.now();
+      if (Math.abs(touch.clientX - lastX) > 3 || Math.abs(touch.clientY - lastY) > 3 || now - lastTime > 10) {
+        lastX = touch.clientX;
+        lastY = touch.clientY;
+        lastTime = now;
+        for (let i = 0; i < 2 + Math.floor(Math.random() * 2); i++) {
+          const offsetX = touch.clientX + (Math.random() - 0.5) * 24;
+          const offsetY = touch.clientY + (Math.random() - 0.5) * 24;
+          createStar(offsetX, offsetY);
+        }
+        if (Math.random() < 0.05) createGalaxy(touch.clientX, touch.clientY);
+      }
+    }
+  }
+  document.addEventListener('touchmove', handleTouchTrail, {passive: true});
+  document.addEventListener('touchstart', handleTouchTrail, {passive: true});
 
   function createStar(x, y) {
     const star = document.createElement('div');
@@ -979,3 +1001,38 @@ if (document.readyState === 'loading') {
 } else {
   scheduleRandomSparkleStar();
 }
+
+// Swipe detection for special effect
+let swipeStartX = null, swipeStartY = null, swipeStartTime = null;
+document.addEventListener('touchstart', function(e) {
+  if (e.touches && e.touches.length === 1) {
+    swipeStartX = e.touches[0].clientX;
+    swipeStartY = e.touches[0].clientY;
+    swipeStartTime = Date.now();
+  }
+}, {passive: true});
+document.addEventListener('touchend', function(e) {
+  if (swipeStartX !== null && swipeStartY !== null && swipeStartTime !== null) {
+    const touch = (e.changedTouches && e.changedTouches[0]) || null;
+    if (touch) {
+      const dx = touch.clientX - swipeStartX;
+      const dy = touch.clientY - swipeStartY;
+      const dt = Date.now() - swipeStartTime;
+      const distance = Math.sqrt(dx*dx + dy*dy);
+      // Consider it a swipe if fast and long enough
+      if (distance > 80 && dt < 400) {
+        // Burst of stars along the swipe path
+        const steps = Math.floor(distance / 18);
+        for (let i = 0; i <= steps; i++) {
+          const t = i / steps;
+          const x = swipeStartX + dx * t + (Math.random()-0.5)*10;
+          const y = swipeStartY + dy * t + (Math.random()-0.5)*10;
+          createStar(x, y);
+        }
+        // Optionally, create a galaxy at the end
+        if (Math.random() < 0.5) createGalaxy(touch.clientX, touch.clientY);
+      }
+    }
+  }
+  swipeStartX = swipeStartY = swipeStartTime = null;
+}, {passive: true});
