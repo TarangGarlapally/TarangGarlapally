@@ -19,7 +19,7 @@
  - I have good **Problem solving skills**
  - I can build mobile apps with **React Native** 📱
  
-<a href="https://taranggarlapally.works" target="_blank" >taranggarlapally.works</a>
+[Portfolio](https://taranggarlapally.github.io/TarangGarlapally/)
  
 <br />
 
